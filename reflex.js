@@ -4,7 +4,7 @@ const express = require('express');
 
 // we can call the function and get an object named app
 const app = express();
-// ইউজার যদি গেট request করে এই url এ, তাহলে callback কল করে দাও
+// if user ask for get request on this url, then call the callback
 app.get('/', (req, res) => {
   // express extends req and res
   res.send('This is home page');

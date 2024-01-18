@@ -7,7 +7,7 @@ const server = http.createServer((req, res) => {
     res.write('This is home page');
     res.end();
   } else if (req.url === '/about-us' && req.method === 'GET') {
-    res.write('This is about us page');
+    res.write('This is about-us page');
     res.end();
   } else {
     res.write('Not found');
