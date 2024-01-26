@@ -21,12 +21,43 @@
 // const logger = (req, res, next) => {
 //   console.log(`${new Date(Date.now()).toLocaleString()} - ${req.method} - ${req.originalUrl} -
 //   ${req.protocol} - ${req.ip}`);
-//   // next();
-//   // we can end the request from here
-//   // res.end();
-//   // this will create an error
-//   // next('test');
 //   next();
+// };
+// app.use(logger);
+// app.get('/about', (req, res) => {
+//   res.send('This is about page');
+// });
+// app.listen(3000, () => {
+//   console.log('listening on port 3000');
+// });
+
+// we can end the response from a middleware
+// const express = require('express');
+
+// const app = express();
+// const logger = (req, res, next) => {
+//   console.log(`${new Date(Date.now()).toLocaleString()} - ${req.method} - ${req.originalUrl} -
+//   ${req.protocol} - ${req.ip}`);
+//   //   we can end the request from here
+//   res.end();
+// };
+// app.use(logger);
+// app.get('/about', (req, res) => {
+//   res.send('This is about page');
+// });
+// app.listen(3000, () => {
+//   console.log('listening on port 3000');
+// });
+
+// next() with parameter
+// const express = require('express');
+
+// const app = express();
+// const logger = (req, res, next) => {
+//   console.log(`${new Date(Date.now()).toLocaleString()} - ${req.method} - ${req.originalUrl} -
+//   ${req.protocol} - ${req.ip}`);
+//   //   this will create an error and will go to error handling middleware
+//   next('test');
 // };
 // app.use(logger);
 // app.get('/about', (req, res) => {
@@ -99,7 +130,7 @@
 // const adminRouter = express.Router();
 // const loggerWraper = (options) => function (req, res, next) {
 //   if (options.log) {
-//     console.log(`${new Date(Date.now()).toLocaleString()} - ${req.method} - ${req.originalUrl} - 
+//     console.log(`${new Date(Date.now()).toLocaleString()} - ${req.method} - ${req.originalUrl} -
 //     ${req.protocol} - ${req.ip}`);
 //     next();
 //   } else {
