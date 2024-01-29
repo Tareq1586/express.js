@@ -1,8 +1,32 @@
+// error handling in express
 // const express = require('express');
 
 // const app = express();
 // app.get('/', (req, res) => {
 //   throw new Error('There was an error!');
+// });
+// // invisible default error handling middleware
+// /*
+// app.use((err, req, res, next) => {
+
+// });
+// */
+// app.listen(3000, () => {
+//   console.log('listening on port 3000');
+// });
+
+// sollution
+// const express = require('express');
+
+// const app = express();
+// app.get('/', (req, res) => {
+//   throw new Error('There was an error!');
+// });
+
+// app.use((err, req, res, next) => {
+//   if (err.message) {
+//     res.send(err.message);
+//   }
 // });
 // app.listen(3000, () => {
 //   console.log('listening on port 3000');
@@ -22,7 +46,7 @@
 //     res.status(500).send('There was an error!');
 //   }
 // });
-// // invisible default error handling middleware
+// // still invisible default error handling middleware is there
 // /*
 // app.use((err, req, res, next) => {
 
@@ -36,10 +60,6 @@
 // const express = require('express');
 
 // const app = express();
-// app.get('/', (req, res) => {
-//   res.send('a');
-// });
-// // 404 not found
 // app.use((req, res, next) => {
 //   res.status(404).send('Requested URL was not found');
 // });
@@ -51,10 +71,18 @@
 // const express = require('express');
 
 // const app = express();
-// app.get('/', (req, res) => {
-//   res.send('a');
+// app.use((req, res, next) => {
+//   next('Requested URL was not found!');
 // });
-// // 404 not found
+// app.listen(3000, () => {
+//   console.log('listening on port 3000');
+// });
+
+// next with parameter with custom error handling middleware
+// next does not have any error message
+// const express = require('express');
+
+// const app = express();
 // app.use((req, res, next) => {
 //   next('Requested URL was not found!');
 // });
@@ -69,22 +97,26 @@
 //   console.log('listening on port 3000');
 // });
 
+// still error, somewhere solved
 // const express = require('express');
 
 // const app = express();
 // app.get('/', (req, res) => {
 //   for (let i = 0; i <= 10; i++) {
 //     if (i === 5) {
-//       throw new Error('There is a problem on this iteration!');
+//       res.end();
+//       next('There is an error at 5 no. iteration');
 //     } else {
 //       res.write('a');
 //     }
 //   }
-//   res.end();
+// });
+// app.use((req, res, next) => {
+//   next('Requested URL was not found!');
 // });
 // app.use((err, req, res, next) => {
 //   if (res.headersSent) {
-//     res.send(err.message);
+//     next('Headers already sent!');
 //   } else {
 //     if (err.message) {
 //       res.status(500).send(err.message);
@@ -111,6 +143,7 @@
 //   console.log('listening on port 3000');
 // });
 
+// synchronous way
 // const express = require('express');
 // const fs = require('fs');
 
@@ -140,7 +173,7 @@
 // });
 // app.use((err, req, res, next) => {
 //   if (res.headersSent) {
-//     next('Headers already sent');
+//     next('Headers already sent!');
 //   } else {
 //     if (err.message) {
 //       res.status(500).send(err.message);
@@ -153,7 +186,7 @@
 //   console.log('listening on port 3000');
 // });
 
-//
+// our own asynchronous function
 // const express = require('express');
 
 // const app = express();
@@ -185,7 +218,7 @@
 //   console.log('listening on port 3000');
 // });
 
-// without try catch
+// without try catch, app will be crushed
 // const express = require('express');
 
 // const app = express();
@@ -213,7 +246,7 @@
 //   console.log('listening on port 3000');
 // });
 
-//
+// we can use next to handle file-does-not-exist
 // const express = require('express');
 // const fs = require('fs');
 
@@ -239,7 +272,7 @@
 //   console.log('listening on port 3000');
 // });
 
-//
+// another error after one
 // const express = require('express');
 // const fs = require('fs');
 
@@ -266,7 +299,7 @@
 //   console.log('listening on port 3000');
 // });
 
-//
+// we can apply middleware chaining
 // const express = require('express');
 // const fs = require('fs');
 

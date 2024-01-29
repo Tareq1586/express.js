@@ -89,9 +89,9 @@
 //   console.log('listening on port 3000');
 // });
 
-// third party, built-in middleware and error handling middleware
+// third party, built-in, error handling middleware
 // const express = require('express');
-// // there was an error
+// // // there was an error earlier
 // // const cookieParser = require('cookie-parser');
 
 // const app = express();
@@ -103,7 +103,7 @@
 // const logger = (req, res, next) => {
 //   console.log(`${new Date(Date.now()).toLocaleString()} - ${req.method} - ${req.originalUrl} -
 //   ${req.protocol} - ${req.ip}`);
-//   throw new Error('there is an error');
+//   throw new Error('there was an error!');
 // };
 // adminRouter.use(logger);
 // adminRouter.get('/dashboard', (req, res) => {

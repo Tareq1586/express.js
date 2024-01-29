@@ -1,5 +1,6 @@
+// function will execute there, where function is defined
 // we can also access app.locals from an external file
-// req object has the access
+// req object can access app.locals
 const handle = (req, res) => {
   console.log(req.route);
   console.log(req.params);

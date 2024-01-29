@@ -15,7 +15,7 @@ app.get('/about-us', (req, res) => {
 app.post('/', (req, res) => {
   res.send('This is home page with post request');
 });
-// server listening is a system process
+
 app.listen(3000, () => {
   console.log('listening to port 3000');
 });

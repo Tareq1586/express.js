@@ -3,32 +3,31 @@
 // const handle = require('./handle');
 
 // const app = express();
-// // local variable of application
+// // local variable of our application
 // app.locals.title = 'My App';
 // app.get('/', handle);
 // app.listen(3000, () => {
 //   console.log('listening to port 3000');
 // });
 
-// mountpath
+// mountpath, mount event
 // const express = require('express');
 
 // const app = express();
 // const admin = express();
-// // অ্যাপ এর moddhe mount হলে mount event ta fire hobe
+// // mount event will be fired, as a sub-app is mounted on a parent app
 // admin.on('mount', (parent) => {
+//   console.log('Admin mounted');
 //   console.log(parent);
 // });
 // admin.get('/dashboard', (req, res) => {
-//   // admin এর root path dibe
+//   // root path of admin
 //   console.log(admin.mountpath);
 //   res.send('This is admin dashboard');
 // });
-// // this is a sub app
-// // কেউ jokhon /admin dibe tokhon take admin app e pathiye debe
 // app.use('/admin', admin);
 // app.listen(3000, () => {
-//   console.log('lisenng to port 3000');
+//   console.log('listeng to port 3000');
 // });
 
 // app.all()
@@ -36,19 +35,20 @@
 
 // const app = express();
 // app.all('/', (req, res) => {
-//   res.send('This is home page');
+//   res.send('This is home page with all method');
 // });
 // app.listen(3000, () => {
 //   console.log('listening to port 3000');
 // });
 
-// app.enable()
+// app.enable(), app.enabled
 // const express = require('express');
 
 // const app = express();
 // app.enable('case sensitive routing');
 // app.all('/about', (req, res) => {
 //   res.send('This is about page');
+//   console.log(app.enabled('case sensitive routing'));
 // });
 // app.listen(3000, () => {
 //   console.log('listening to port 3000');
@@ -58,7 +58,7 @@
 // const express = require('express');
 
 // const app = express();
-// // this is like a middleware
+// // param is like a middleware
 // // middleware is like an interceptor
 // app.param('id', (req, res, next, id) => {
 //   const user = {
@@ -66,7 +66,7 @@
 //     name: 'Bangladesh',
 //   };
 //   req.user = user;
-//   // this will execute the route callback
+//   // next() will execute the route callback
 //   next();
 // });
 // app.get('/user/:id', (req, res) => {
