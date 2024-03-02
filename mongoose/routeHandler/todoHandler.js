@@ -6,9 +6,10 @@ const todoSchema = require('../schemas/todoSchema');
 
 const Todo = new mongoose.model('Todo', todoSchema);
 const router = express.Router();
+const checkLogin = require('../middlewares/checkLogin');
 
 // get active todos
-router.get('/', async (req, res) => {
+router.get('/', checkLogin, async (req, res) => {
   try {
     const array = await Todo.find({ status: 'active' });
 
