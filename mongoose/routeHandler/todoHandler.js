@@ -3,15 +3,20 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const todoSchema = require('../schemas/todoSchema');
+const userSchema = require('../schemas/userSchema');
 
 const Todo = new mongoose.model('Todo', todoSchema);
+const User = new mongoose.model('User', userSchema);
 const router = express.Router();
 const checkLogin = require('../middlewares/checkLogin');
 
-// get active todos
+// get todos and populate user data
 router.get('/', checkLogin, async (req, res) => {
   try {
-    const array = await Todo.find({ status: 'active' });
+    // const array = await Todo.find({ status: 'active' });
+
+    // populate method
+    const array = await Todo.find({}).populate('user', 'name username -_id');
 
     // built-in query helpers method
     // const array = await Todo.find({ status: 'active' }).select({
@@ -25,7 +30,7 @@ router.get('/', checkLogin, async (req, res) => {
     // }).limit(1).exec();
 
     res.status(200).json({ result: array });
-  } catch (err) {
+  } catch {
     res.status(500).json({ error: 'There was a server side error' });
   }
 });
@@ -75,10 +80,24 @@ router.get('/:id', async (req, res) => {
 });
 
 // post a todo
-router.post('/', async (req, res) => {
+router.post('/', checkLogin, async (req, res) => {
+  // const newTodo = new Todo(req.body);
+  // example of spread operator
+  const newTodo = new Todo({
+    ...req.body,
+    user: req.userId,
+  });
   try {
-    const newTodo = new Todo(req.body);
-    await newTodo.save();
+    const todo = await newTodo.save();
+    await User.updateOne(
+      { _id: req.userId },
+      {
+        $push: {
+          todos: todo._id,
+        },
+      },
+    );
+
     res.status(200).json({ message: 'Todo was inserted successfully' });
   } catch (err) {
     res.status(500).json({ error: 'There was a server side error!' });

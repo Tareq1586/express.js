@@ -15,7 +15,7 @@
 //   console.log('listening on port 3000');
 // });
 
-// sollution
+// solution: handling the error instade of printinting stack trace
 // const express = require('express');
 
 // const app = express();
@@ -32,7 +32,7 @@
 //   console.log('listening on port 3000');
 // });
 
-// custom error handler
+// custom error handler with syntax error
 // const express = require('express');
 
 // const app = express();
@@ -98,10 +98,11 @@
 // });
 
 // still error, somewhere solved
+// this is not a big deal
 // const express = require('express');
 
 // const app = express();
-// app.get('/', (req, res) => {
+// app.get('/', (req, res, next) => {
 //   for (let i = 0; i <= 10; i++) {
 //     if (i === 5) {
 //       res.end();
