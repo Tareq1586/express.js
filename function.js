@@ -27,6 +27,8 @@
 // app.use(express.static(`${__dirname}/public/`, {
 //   index: 'home.html',
 // }));
+// // just need to change the req headers object
+// // content-type: plain/text
 // app.use(express.text());
 // app.get('/', (req, res) => {
 //   res.send('This is home page');

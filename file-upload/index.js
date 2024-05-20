@@ -1,18 +1,18 @@
 // multer.single()
-// const express = require('express');
-// const multer = require('multer');
+const express = require('express');
+const multer = require('multer');
 
-// const UPLOADS_FOLDER = '../uploads/';
-// const upload = multer({
-//   dest: UPLOADS_FOLDER,
-// });
-// const app = express();
-// app.post('/', upload.single('avatar'), (req, res) => {
-//   res.send('Hello file');
-// });
-// app.listen(3000, () => {
-//   console.log('listening on port 3000');
-// });
+const UPLOADS_FOLDER = '../uploads/';
+const upload = multer({
+  dest: UPLOADS_FOLDER,
+});
+const app = express();
+app.post('/', upload.single('avatar'), (req, res) => {
+  res.send('Hello file');
+});
+app.listen(3000, () => {
+  console.log('listening on port 3000');
+});
 
 // upload.array()
 // const express = require('express');
